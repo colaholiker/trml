@@ -1,0 +1,39 @@
+<div class="layout layout--col">
+  <!-- Obere Leiste mit Titel und liturgischer Farbe -->
+  <div class="header">
+    <span class="title title--large">{{ data[0].Titel }}</span>
+    <span class="meta">{{ data[0].Festzeit }} ({{ data[0]["liturgische Farbe"] }})</span>
+  </div>
+
+  <div class="content grid grid--2col">
+    <!-- Linke Spalte: Wochenspruch & Bild -->
+    <div class="section col">
+      <div class="item">
+        <span class="label">Wochenspruch ({{ data[0].Wochenspruch }})</span>
+        <!-- Optionales Hintergrundbild des Tages -->
+        <img src="{{ data[0].Hintergrundbild }}" class="image image--cover format--png" style="height: 120px; width: 100%; border-radius: 4px; margin-top: 5px;" />
+      </div>
+    </div>
+
+    <!-- Rechte Spalte: Biblische Texte & Lieder -->
+    <div class="section col">
+      <div class="item">
+        <span class="label">Evangelium</span>
+        <span class="value">{{ data[0].Evangelium }}</span>
+      </div>
+      <div class="item">
+        <span class="label">Predigttext (Reihe {{ data[0].Reihe }})</span>
+        <span class="value">{{ data[0].Predigttext }}</span>
+      </div>
+      <div class="item">
+        <span class="label">Wochenlied</span>
+        <span class="value text--medium">{{ data[0].Wochenlied }}</span>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Fußzeile mit formatiertem Datum -->
+  <div class="footer">
+    <span>{{ data[0]["Datum lang"] }}</span>
+  </div>
+</div>
