@@ -1,39 +1,68 @@
+<!-- Hier wird der Fallback definiert: Wenn Tag (idx_0) existiert, nimm ihn, sonst die Woche (idx_1) -->
+{% assign tag = data.idx_0.0 %}
+{% assign woche = data.idx_1.0 %}
+
+{% if tag.Titel != json.undefined and tag.Titel != null and tag.Titel != "" %}
+  {% assign info = tag %}
+  {% assign anzeige_typ = "Feiertag" %}
+{% else %}
+  {% assign info = woche %}
+  {% assign anzeige_typ = "Wochenübersicht" %}
+{% endif %}
+
 <div class="layout layout--col">
-  <!-- Obere Leiste mit Titel und liturgischer Farbe -->
+  <!-- Kopfzeile -->
   <div class="header">
-    <span class="title title--large">{{ data[0].Titel }}</span>
-    <span class="meta">{{ data[0].Festzeit }} ({{ data[0]["liturgische Farbe"] }})</span>
+    <span class="title title--large">{{ info.Titel }}</span>
+    <span class="meta">{{ info.Festzeit }} • {{ info["liturgische Farbe"] }}</span>
   </div>
 
   <div class="content grid grid--2col">
-    <!-- Linke Spalte: Wochenspruch & Bild -->
+    <!-- Linke Spalte -->
     <div class="section col">
       <div class="item">
-        <span class="label">Wochenspruch ({{ data[0].Wochenspruch }})</span>
-        <!-- Optionales Hintergrundbild des Tages -->
-        <img src="{{ data[0].Hintergrundbild }}" class="image image--cover format--png" style="height: 120px; width: 100%; border-radius: 4px; margin-top: 5px;" />
+        <span class="label">Wochenspruch ({{ info.Wochenspruch }})</span>
+        <span class="value text--italic">„{{ info.Wochenspruch-Text }}“</span>
+      </div>
+      <div class="item" style="margin-top: 10px;">
+        <span class="label">Kernaussage</span>
+        <span class="text--small">{{ info.Kernaussage }}</span>
       </div>
     </div>
 
-    <!-- Rechte Spalte: Biblische Texte & Lieder -->
-    <div class="section col">
-      <div class="item">
-        <span class="label">Evangelium</span>
-        <span class="value">{{ data[0].Evangelium }}</span>
+    <!-- Rechte Spalte -->
+    <div class="section col" style="border-left: 1px solid #ccc; padding-left: 15px;">
+      <span class="label">Liturgische Texte ({{ anzeige_typ }})</span>
+      
+      <div class="bible-reading">
+        <span class="bible-label">Evangelium:</span>
+        <span class="bible-value">{{ info.Evangelium }}</span>
       </div>
-      <div class="item">
-        <span class="label">Predigttext (Reihe {{ data[0].Reihe }})</span>
-        <span class="value">{{ data[0].Predigttext }}</span>
+      
+      <div class="bible-reading">
+        <span class="bible-label">Predigttext (Reihe {{ info.Reihe }}):</span>
+        <span class="bible-value">{{ info.Predigttext }}</span>
       </div>
-      <div class="item">
-        <span class="label">Wochenlied</span>
-        <span class="value text--medium">{{ data[0].Wochenlied }}</span>
+
+      <div class="bible-reading">
+        <span class="bible-label">Epistel:</span>
+        <span class="bible-value">{{ info.Epistel }}</span>
+      </div>
+      
+      <div class="bible-reading">
+        <span class="bible-label">AT-Lesung:</span>
+        <span class="bible-value">{{ info.AT-Lesung }}</span>
+      </div>
+
+      <div class="bible-reading" style="margin-top: 10px;">
+        <span class="bible-label">Wochenlied:</span>
+        <span class="bible-value text--bold">{{ info.Wochenlied }}</span>
       </div>
     </div>
   </div>
   
-  <!-- Fußzeile mit formatiertem Datum -->
+  <!-- Fußzeile -->
   <div class="footer">
-    <span>{{ data[0]["Datum lang"] }}</span>
+    <span>Gültig für: {{ info["Datum lang"] }}</span>
   </div>
 </div>
