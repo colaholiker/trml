@@ -7,7 +7,7 @@ polling_verb: get
 framework_version: 3.4.3
 serverless_language: ''
 refresh_interval_floor: ''
-polling_url: https://wochenspruch.pfarr.tools/api/kirchenjahr/datum/2024-12-06
+polling_url: 'https://wochenspruch.pfarr.tools/api/kirchenjahr/datum/{{ "now" | date: "%Y-%m-%d" }}'
 polling_headers: ''
 polling_body: ''
 id: 515480
