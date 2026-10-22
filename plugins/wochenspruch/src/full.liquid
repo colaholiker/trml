@@ -1,20 +1,32 @@
-<!-- Hier wird der Fallback definiert: Wenn Tag (IDX_0) existiert, nimm ihn, sonst die Woche (IDX_1) -->
+<style>
+.wochenspruch {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 350px;
+  padding: 2rem;
+  color: white;
+}
+</style>
+
+
 {% assign tag = IDX_0.data[0] %}
 {% assign woche = IDX_1.data[0] %}
 
-{% if tag and tag.Titel and tag.Titel != "" %}
+{% assign info = woche %}
+{% assign anzeige_typ = "Wochenübersicht" %}
+
+{% if tag.Titel != nil and tag.Titel != blank %}
   {% assign info = tag %}
   {% assign anzeige_typ = "Feiertag" %}
-{% else %}
-  {% assign info = woche %}
-  {% assign anzeige_typ = "Wochenübersicht" %}
 {% endif %}
 
-<!-- Testausgabe -->
-{{ info["Titel"] }} ({{ anzeige_typ }})
-{{ info["Datum lang"] }}
+<div class="wochenspruch"
+  {% if info["Wochenspruch-Bild"] != blank %}
+    style="background-image: url('{{ info["Wochenspruch-Bild"] }}');"
+  {% endif %}>
 
+  <h2>{{ info.Titel }}</h2>
+  <p>{{ info["Datum lang"] }}</p>
 
-
-
-{{ info }}
+</div>
