@@ -1,0 +1,18 @@
+---
+strategy: polling
+no_screen_padding: 'no'
+dark_mode: 'no'
+static_data: ''
+polling_verb: get
+framework_version: 3.4.3
+serverless_language: ''
+refresh_interval_floor: ''
+polling_url: https://wochenspruch.pfarr.tools/api/kirchenjahr/datum/2024-12-06
+polling_headers: ''
+polling_body: ''
+id: 515480
+oauth_enabled: 'false'
+oauth_pkce_enabled: 'no'
+name: wochenspruch
+description: ''
+refresh_interval: 15
