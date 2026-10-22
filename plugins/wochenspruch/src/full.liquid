@@ -1,6 +1,6 @@
 <!-- Hier wird der Fallback definiert: Wenn Tag (idx_0) existiert, nimm ihn, sonst die Woche (idx_1) -->
-{% assign tag = data.idx_0.0 %}
-{% assign woche = data.idx_1.0 %}
+{% assign tag = IDX_0.data %}
+{% assign woche = IDX_1.data %}
 
 {% if tag.Titel != json.undefined and tag.Titel != null and tag.Titel != "" %}
   {% assign info = tag %}
@@ -9,8 +9,6 @@
   {% assign info = woche %}
   {% assign anzeige_typ = "Wochenübersicht" %}
 {% endif %}
-
-{{woche.Title}}
 
 <div class="layout layout--col">
   <!-- Kopfzeile -->
